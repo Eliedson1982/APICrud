@@ -2,6 +2,9 @@ const express = require('express')
 const fs = require('fs')
 const server = express()
 const dados = require("./src/data/dados.json")
+const cors = require('cors')
+
+server.use(cors())
 
 server.use(express.json())
 
@@ -50,3 +53,5 @@ server.listen(3000, ()=>{
 function savefiles(){
     fs.writeFileSync(__dirname + "/src/data/dados.json", JSON.stringify(dados, null, 2))
 }
+
+module.exports = { server, savefiles }
